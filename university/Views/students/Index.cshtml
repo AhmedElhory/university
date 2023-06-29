@@ -1,0 +1,61 @@
+﻿@model IEnumerable<university.Models.student>
+
+@{
+    ViewBag.Title = "list Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lname)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.enrollmentdata)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Imagepass)
+
+           
+           
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.enrollmentdata)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Imagepass)*@
+            @if (!string.IsNullOrWhiteSpace(item.Imagepass))
+                {
+                <img  width="50" height="50"
+                     src="~/Content/images/student/@Url.Content(item.Imagepass)" 
+                     alt="AIternate text"/>
+                }
+            </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.studentId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.studentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.studentId })
+        </td>
+    </tr>
+}
+
+</table>
